@@ -49,11 +49,10 @@ OPTIMIZATION:
 `
 
       // Call the Mistral Codestral API
-      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+      const response = await fetch("/api/codestral-proxy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
         },
         body: JSON.stringify({
           prompt: prompt,
