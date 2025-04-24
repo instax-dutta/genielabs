@@ -55,13 +55,14 @@ EXPLANATION:
         },
         body: JSON.stringify({
           prompt: prompt,
+          suffix: "",
           max_tokens: 1000,
           temperature: 0.7,
         }),
       })
 
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.message?.content || ""
+      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
 
       // Parse the response to extract code and explanation
       const parts = parseResponse(responseContent)

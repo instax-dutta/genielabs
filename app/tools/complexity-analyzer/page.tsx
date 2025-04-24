@@ -56,13 +56,13 @@ OPTIMIZATION:
         },
         body: JSON.stringify({
           prompt: prompt,
+          suffix: "",
           max_tokens: 1000,
           temperature: 0.7,
         }),
       })
-      // Mistral chat API returns choices[0].message.content
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.message?.content || ""
+      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
 
       // Parse the response to extract complexity, explanation, and optimization
       const parts = parseResponse(responseContent)

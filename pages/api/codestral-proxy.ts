@@ -7,24 +7,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Prepare the request body for the chat/completions endpoint
-    const { prompt, max_tokens, temperature } = req.body;
-    const chatBody = {
+    // Accept prompt, max_tokens, temperature, suffix from client
+    const { prompt, max_tokens, temperature, suffix } = req.body;
+    const fimBody = {
       model: 'codestral-latest',
-      messages: [
-        { role: 'user', content: prompt }
-      ],
-      max_tokens,
-      temperature
+      prompt: prompt,
+      suffix: suffix ?? '',
+      max_tokens: max_tokens ?? 1000,
+      temperature: temperature ?? 0.7,
     };
 
-    const mistralRes = await fetch('https://api.mistral.ai/v1/chat/completions', {
+    const mistralRes = await fetch('https://api.mistral.ai/v1/fim/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
       },
-      body: JSON.stringify(chatBody),
+      body: JSON.stringify(fimBody),
     });
 
     const data = await mistralRes.json();

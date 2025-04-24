@@ -40,13 +40,13 @@ Make sure the SQL query is properly formatted and follows best practices.
         },
         body: JSON.stringify({
           prompt: prompt,
+          suffix: "",
           max_tokens: 1000,
           temperature: 0.7,
         }),
       })
-      // Mistral chat API returns choices[0].message.content
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.message?.content || ""
+      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
 
       // Try to extract SQL from the response
       const extractedSql = extractSqlFromResponse(responseContent)
