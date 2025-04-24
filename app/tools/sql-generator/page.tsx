@@ -9,16 +9,10 @@ import CodeDisplay from "@/components/code-display"
 import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 
-// Import Hugging Face Inference SDK
-import { HfInference } from "@huggingface/inference"
-
 export default function SqlGeneratorPage() {
   const [query, setQuery] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [generatedSql, setGeneratedSql] = useState("")
-
-  // Initialize Hugging Face client
-  const hfClient = new HfInference("paste your hf api key here")
 
   const handleSubmit = async () => {
     if (!query) return
@@ -38,32 +32,27 @@ Please provide only the SQL query without any explanations or comments.
 Make sure the SQL query is properly formatted and follows best practices.
 `
 
-      // Call the Hugging Face Inference API
-      const chatCompletion = await hfClient.chatCompletion({
-        model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI SQL query generator. Translate the provided plain-English query into an SQL query with perfect syntax.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        provider: "hf-inference",
-        max_tokens: 1000,
-        temperature: 0.7,
+      // Call the Mistral Codestral API
+      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 1000,
+          temperature: 0.7,
+        }),
       })
+      const data = await response.json()
+      const responseContent = data.completion
 
-      const responseContent = chatCompletion.choices[0].message.content
-
-      // Extract the SQL query from the response
+      // Try to extract SQL from the response
       const extractedSql = extractSqlFromResponse(responseContent)
       setGeneratedSql(extractedSql)
     } catch (error) {
-      console.error("Error calling Hugging Face API:", error)
+      console.error("Error calling Mistral Codestral API:", error)
       setGeneratedSql(`-- Error: Could not generate SQL query\n-- Please try again or rephrase your query.`)
     } finally {
       setIsLoading(false)
@@ -72,16 +61,9 @@ Make sure the SQL query is properly formatted and follows best practices.
 
   // Helper function to extract SQL from the response
   const extractSqlFromResponse = (response: string) => {
-    // Try to extract SQL from code blocks
-    const sqlBlockRegex = /```(?:sql)?(.*?)```/is
-    const match = response.match(sqlBlockRegex)
-
-    if (match && match[1]) {
-      return match[1].trim()
-    }
-
-    // If no code block is found, return the whole response
-    return response.trim()
+    // Try to extract code block from model response
+    const codeBlockMatch = response.match(/```(?:\w+)?\s*([\s\S]*?)```/)
+    return codeBlockMatch ? codeBlockMatch[1].trim() : response.trim()
   }
 
   const copyToClipboard = () => {

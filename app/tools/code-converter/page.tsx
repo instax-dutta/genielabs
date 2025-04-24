@@ -10,18 +10,12 @@ import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
 
-// Import Hugging Face Inference SDK
-import { HfInference } from "@huggingface/inference"
-
 export default function CodeConverterPage() {
   const [sourceCode, setSourceCode] = useState("")
   const [sourceLanguage, setSourceLanguage] = useState("javascript")
   const [targetLanguage, setTargetLanguage] = useState("python")
   const [isLoading, setIsLoading] = useState(false)
   const [convertedCode, setConvertedCode] = useState("")
-
-  // Initialize Hugging Face client
-  const hfClient = new HfInference("paste your hf api key here")
 
   const handleSubmit = async () => {
     if (!sourceCode) return
@@ -42,32 +36,27 @@ Please provide only the converted code in ${targetLanguage} without any explanat
 Make sure the converted code follows best practices and idioms of the target language.
 `
 
-      // Call the Hugging Face Inference API
-      const chatCompletion = await hfClient.chatCompletion({
-        model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI code converter. Translate the provided code from the source programming language to the target programming language while maintaining functionality and following best practices of the target language.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        provider: "hf-inference",
-        max_tokens: 1000,
-        temperature: 0.7,
+      // Call the Mistral Codestral API
+      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 1000,
+          temperature: 0.7,
+        }),
       })
-
-      const responseContent = chatCompletion.choices[0].message.content
+      const data = await response.json()
+      const responseContent = data.completion
 
       // Extract the code from the response
       const extractedCode = extractCodeFromResponse(responseContent, targetLanguage)
       setConvertedCode(extractedCode)
     } catch (error) {
-      console.error("Error calling Hugging Face API:", error)
+      console.error("Error calling Mistral Codestral API:", error)
       setConvertedCode(`// Error: Could not convert the code\n// Please try again or check your code syntax.`)
     } finally {
       setIsLoading(false)
@@ -77,15 +66,8 @@ Make sure the converted code follows best practices and idioms of the target lan
   // Helper function to extract code from the response
   const extractCodeFromResponse = (response: string, targetLang: string) => {
     // Try to extract code from code blocks
-    const codeBlockRegex = new RegExp(`\`\`\`(?:${targetLang})?(.*?)\`\`\``, "is")
-    const match = response.match(codeBlockRegex)
-
-    if (match && match[1]) {
-      return match[1].trim()
-    }
-
-    // If no code block is found, return the whole response
-    return response.trim()
+    const codeBlockMatch = response.match(/```(?:\w+)?\s*([\s\S]*?)```/)
+    return codeBlockMatch ? codeBlockMatch[1].trim() : response.trim()
   }
 
   return (

@@ -11,17 +11,11 @@ import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
 
-// Import Hugging Face Inference SDK
-import { HfInference } from "@huggingface/inference"
-
 export default function BugFixerPage() {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("javascript")
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<{ fixedCode: string; explanation: string } | null>(null)
-
-  // Initialize Hugging Face client
-  const hfClient = new HfInference("paste your hf api key here")
 
   const handleSubmit = async () => {
     if (!code) return
@@ -53,26 +47,23 @@ EXPLANATION:
 // Your explanation here
 `
 
-      // Call the Hugging Face Inference API
-      const chatCompletion = await hfClient.chatCompletion({
-        model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI-powered bug fixer. Analyze the provided code, identify errors, and suggest fixes with detailed explanations.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        provider: "hf-inference",
-        max_tokens: 1000,
-        temperature: 0.7,
+      // Call the Mistral Codestral API
+      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 1000,
+          temperature: 0.7,
+        }),
       })
 
-      const responseContent = chatCompletion.choices[0].message.content
+      const data = await response.json()
+
+      const responseContent = data.completion
 
       // Parse the response to extract code and explanation
       const parts = parseResponse(responseContent)
@@ -89,7 +80,7 @@ EXPLANATION:
         })
       }
     } catch (error) {
-      console.error("Error calling Hugging Face API:", error)
+      console.error("Error calling Mistral Codestral API:", error)
       setResult({
         fixedCode: "// Error processing your request. Please try again.",
         explanation: "There was an error processing your request. Please try again or check your code syntax.",

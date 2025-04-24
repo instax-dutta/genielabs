@@ -11,17 +11,11 @@ import CodeDisplay from "@/components/code-display"
 import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 
-// Import Hugging Face Inference SDK
-import { HfInference } from "@huggingface/inference"
-
 export default function CodeExplainerPage() {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("javascript")
   const [isLoading, setIsLoading] = useState(false)
   const [explanation, setExplanation] = useState("")
-
-  // Initialize Hugging Face client
-  const hfClient = new HfInference("paste your hf api key here")
 
   const handleSubmit = async () => {
     if (!code) return
@@ -47,31 +41,26 @@ Please provide a detailed explanation in markdown format that includes:
 Format your response as markdown with proper headings, lists, and code blocks.
 `
 
-      // Call the Hugging Face Inference API
-      const chatCompletion = await hfClient.chatCompletion({
-        model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI code explainer. Explain the provided code snippet in simple terms and provide the explanation in markdown format.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        provider: "hf-inference",
-        max_tokens: 1000,
-        temperature: 0.7,
+      // Call the Mistral Codestral API
+      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 1000,
+          temperature: 0.7,
+        }),
       })
-
-      const responseContent = chatCompletion.choices[0].message.content
+      const data = await response.json()
+      const responseContent = data.completion
 
       // Set the explanation from the response
       setExplanation(responseContent)
     } catch (error) {
-      console.error("Error calling Hugging Face API:", error)
+      console.error("Error calling Mistral Codestral API:", error)
       setExplanation(
         "# Error\n\nThere was an error processing your request. Please try again or check your code syntax.",
       )

@@ -10,17 +10,11 @@ import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
 
-// Import Hugging Face Inference SDK
-import { HfInference } from "@huggingface/inference"
-
 export default function ComplexityAnalyzerPage() {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("javascript")
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<{ complexity: string; explanation: string; optimization: string } | null>(null)
-
-  // Initialize Hugging Face client
-  const hfClient = new HfInference("paste your hf api key here")
 
   const handleSubmit = async () => {
     if (!code) return
@@ -54,26 +48,21 @@ OPTIMIZATION:
 // Suggestions for optimizing the code, including code examples if applicable
 `
 
-      // Call the Hugging Face Inference API
-      const chatCompletion = await hfClient.chatCompletion({
-        model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI code complexity analyzer. Calculate the time complexity (Big-O) of the provided code and suggest optimizations.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        provider: "hf-inference",
-        max_tokens: 1000,
-        temperature: 0.7,
+      // Call the Mistral Codestral API
+      const response = await fetch("https://codestral.mistral.ai/v1/fim/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 1000,
+          temperature: 0.7,
+        }),
       })
-
-      const responseContent = chatCompletion.choices[0].message.content
+      const data = await response.json()
+      const responseContent = data.completion
 
       // Parse the response to extract complexity, explanation, and optimization
       const parts = parseResponse(responseContent)
@@ -92,7 +81,7 @@ OPTIMIZATION:
         })
       }
     } catch (error) {
-      console.error("Error calling Hugging Face API:", error)
+      console.error("Error calling Mistral Codestral API:", error)
       setResult({
         complexity: "Error",
         explanation: "There was an error processing your request. Please try again or check your code syntax.",
@@ -106,9 +95,9 @@ OPTIMIZATION:
   // Helper function to parse the response
   const parseResponse = (response: string) => {
     // Look for the complexity section
-    const complexityMatch = response.match(/COMPLEXITY:\s*(.*?)(?=\n\n|EXPLANATION:|$)/s)
-    const explanationMatch = response.match(/EXPLANATION:\s*([\s\S]*?)(?=\n\n|OPTIMIZATION:|$)/s)
-    const optimizationMatch = response.match(/OPTIMIZATION:\s*([\s\S]*?)(?=$)/s)
+    const complexityMatch = response.match(/COMPLEXITY:\s*([\s\S]*?)(?=\n\n|EXPLANATION:|$)/)
+    const explanationMatch = response.match(/EXPLANATION:\s*([\s\S]*?)(?=\n\n|OPTIMIZATION:|$)/)
+    const optimizationMatch = response.match(/OPTIMIZATION:\s*([\s\S]*?)(?=$)/)
 
     if (complexityMatch || explanationMatch || optimizationMatch) {
       return {
