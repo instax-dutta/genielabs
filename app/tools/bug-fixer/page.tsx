@@ -61,8 +61,7 @@ EXPLANATION:
       })
 
       const data = await response.json()
-
-      const responseContent = data.completion
+      const responseContent = data.choices?.[0]?.message?.content || ""
 
       // Parse the response to extract code and explanation
       const parts = parseResponse(responseContent)

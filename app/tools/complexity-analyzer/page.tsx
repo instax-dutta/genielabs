@@ -60,8 +60,9 @@ OPTIMIZATION:
           temperature: 0.7,
         }),
       })
+      // Mistral chat API returns choices[0].message.content
       const data = await response.json()
-      const responseContent = data.completion
+      const responseContent = data.choices?.[0]?.message?.content || ""
 
       // Parse the response to extract complexity, explanation, and optimization
       const parts = parseResponse(responseContent)

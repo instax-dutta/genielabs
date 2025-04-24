@@ -53,8 +53,9 @@ Format your response as markdown with proper headings, lists, and code blocks.
           temperature: 0.7,
         }),
       })
+      // Mistral chat API returns choices[0].message.content
       const data = await response.json()
-      const responseContent = data.completion
+      const responseContent = data.choices?.[0]?.message?.content || ""
 
       // Set the explanation from the response
       setExplanation(responseContent)

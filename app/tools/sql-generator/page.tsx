@@ -44,8 +44,9 @@ Make sure the SQL query is properly formatted and follows best practices.
           temperature: 0.7,
         }),
       })
+      // Mistral chat API returns choices[0].message.content
       const data = await response.json()
-      const responseContent = data.completion
+      const responseContent = data.choices?.[0]?.message?.content || ""
 
       // Try to extract SQL from the response
       const extractedSql = extractSqlFromResponse(responseContent)
