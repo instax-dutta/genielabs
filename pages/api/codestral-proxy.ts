@@ -18,12 +18,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       temperature: temperature ?? 0.7,
     };
 
+    // Use MISTRAL_API_KEY for server-side security
     const mistralRes = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MISTRAL_API_KEY}`,
+        'Authorization': `Bearer ${process.env.MISTRAL_API_KEY}`,
       },
       body: JSON.stringify(body),
     });
