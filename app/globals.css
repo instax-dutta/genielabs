@@ -68,6 +68,18 @@
   }
 }
 
+@font-face {
+  font-family: 'Mooxy';
+  src: url('https://link.storjshare.io/raw/jvwx3gpy6o27u7qqynydte3ijusa/myfonts/mooxy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Mooxy', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
 /* Enhanced Animation Keyframes */
 @keyframes float {
   0%,
@@ -360,4 +372,3 @@
     padding-right: var(--space-4);
   }
 }
-
