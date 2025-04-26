@@ -42,7 +42,7 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gradient-to-b from-white to-[#304FFE]/90 bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-transparent"
+          className="bg-gradient-to-b from-white to-[#304FFE]/90 bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-transparent"
         >
           {title}
         </motion.h1>
