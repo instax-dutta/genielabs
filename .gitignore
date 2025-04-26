@@ -4,3 +4,4 @@ node_modules
 .next-env.d.ts
 yarn.lock
 yarn-error.log
+// Time complexity in Big-O notation O(n)

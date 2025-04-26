@@ -242,15 +242,26 @@ OPTIMIZATION:
                     </TabsList>
                     <TabsContent value="complexity" className="mt-0">
                       <div className="flex flex-col items-center justify-center space-y-4 rounded-lg border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm">
-                        <div className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-5xl font-bold text-transparent">
-                          {result.complexity}
+                        <div className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-4xl font-bold text-transparent">
+                          {
+                            (() => {
+                              // Remove leading comment and extract O(...) notation
+                              const cleaned = result.complexity.replace(/^\/\/.*O\(([^)]+)\)/, 'O($1)')
+                                .replace(/^\/\/[^\n]*\n?/, '')
+                                .trim();
+                              const match = cleaned.match(/O\([^)]*\)/);
+                              return match ? match[0] : (cleaned || 'Not determined');
+                            })()
+                          }
                         </div>
                         <p className="text-sm text-white/60">Time Complexity</p>
                       </div>
                     </TabsContent>
                     <TabsContent value="explanation" className="mt-0">
                       <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-white/80 sm:text-base">
-                        <p className="whitespace-pre-wrap">{result.explanation}</p>
+                        <div className="whitespace-pre-wrap">
+                          {result.explanation.replace(/^\/\/.*explanation.*\n?/i, '').trim()}
+                        </div>
                       </div>
                     </TabsContent>
                     <TabsContent value="optimization" className="mt-0">
@@ -258,10 +269,9 @@ OPTIMIZATION:
                         <div
                           className="whitespace-pre-wrap"
                           dangerouslySetInnerHTML={{
-                            __html: result.optimization.replace(
-                              /```(?:javascript|python|java|csharp|cpp|go|ruby|php)?\s*([\s\S]*?)```/g,
-                              '<pre class="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>$1</code></pre>',
-                            ),
+                            __html: result.optimization
+                              .replace(/^\/\/.*optimization.*\n?/i, '')
+                              .replace(/```(?:javascript|python|java|csharp|cpp|go|ruby|php)?\s*([\s\S]*?)```/g, '<pre class="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>$1</code></pre>'),
                           }}
                         />
                       </div>
