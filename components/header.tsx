@@ -2,10 +2,11 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Code, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 export default function Header() {
   const pathname = usePathname()
@@ -28,7 +29,7 @@ export default function Header() {
         <div className="flex w-full items-center justify-between md:w-auto">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <div className="rounded-xl bg-gradient-to-br from-[#304FFE] to-[#00C853] p-1.5 transition-transform duration-300 hover:scale-105">
-              <Code className="h-5 w-5 text-white" />
+              <Image src="/favicon.svg" alt="GenieLabs Logo" width={32} height={32} />
             </div>
             <span className="bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-lg font-bold text-transparent">
               GenieLabs
@@ -49,7 +50,7 @@ export default function Header() {
               <nav className="flex flex-col px-6 py-12">
                 <Link href="/" className="flex items-center gap-2 font-bold text-white">
                   <div className="rounded-xl bg-gradient-to-br from-[#304FFE] to-[#00C853] p-1.5">
-                    <Code className="h-5 w-5" />
+                    <Image src="/favicon.svg" alt="GenieLabs Logo" width={32} height={32} />
                   </div>
                   <span className="bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-xl text-transparent">
                     GenieLabs
@@ -69,7 +70,7 @@ export default function Header() {
                     >
                       {item.label}
                       <div className="ml-auto opacity-0 transition-opacity group-hover:opacity-100">
-                        <Code className="h-4 w-4" />
+                        <Menu className="h-4 w-4" />
                       </div>
                     </Link>
                   ))}
