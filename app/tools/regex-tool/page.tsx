@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
+import ReactMarkdown from 'react-markdown'
 
 export default function RegexToolPage() {
   const [pattern, setPattern] = useState("")
@@ -182,7 +183,23 @@ export default function RegexToolPage() {
                     <span>Explaining...</span>
                   </div>
                 ) : explanation ? (
-                  <div className="whitespace-pre-wrap">{explanation}</div>
+                  <div className="whitespace-pre-wrap">
+                    <ReactMarkdown
+                      components={{
+                        code({node, className, children, ...props}) {
+                          // @ts-expect-error: react-markdown passes inline
+                          const inline = props.inline;
+                          return !inline ? (
+                            <pre className="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>{children}</code></pre>
+                          ) : (
+                            <code className="bg-black/30 rounded px-1 py-0.5 font-mono text-xs">{children}</code>
+                          )
+                        }
+                      }}
+                    >
+                      {explanation}
+                    </ReactMarkdown>
+                  </div>
                 ) : (
                   <div className="text-xs text-white/40">Enter a regex pattern and click Explain Regex.</div>
                 )}

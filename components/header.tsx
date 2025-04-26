@@ -21,6 +21,7 @@ export default function Header() {
     { href: "/tools/code-explainer", label: "Code Explainer" },
     { href: "/tools/code-converter", label: "Code Converter" },
     { href: "/tools/sql-generator", label: "SQL Generator" },
+    { href: "/tools/regex-tool", label: "Regex Builder" },
   ]
 
   return (

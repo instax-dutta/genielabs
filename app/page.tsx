@@ -35,7 +35,7 @@ export default function Home() {
         />
 
         {/* Content */}
-        <div className="container relative mx-auto max-w-[1200px]">
+        <div className="container max-w-3xl px-4 sm:px-6 sm:py-8 lg:py-12 mx-auto relative">
           <div className="flex flex-col items-center justify-center space-y-12 text-center">
             {/* Enhanced Animated Badge */}
             <motion.div
