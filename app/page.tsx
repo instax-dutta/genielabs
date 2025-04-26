@@ -97,9 +97,9 @@ export default function Home() {
                     return (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                        transition={{ duration: 0.35, delay: i * 0.07, type: 'spring', stiffness: 90, damping: 15 }}
                         viewport={{ once: true }}
                         className="h-full flex"
                       >
