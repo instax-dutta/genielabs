@@ -80,17 +80,17 @@ Make sure the SQL query is properly formatted and follows best practices.
           icon="sql-generator"
         />
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Natural Language Query</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Natural Language Query</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
                   Describe what data you want to retrieve
                 </CardDescription>
               </CardHeader>
@@ -125,11 +125,11 @@ Make sure the SQL query is properly formatted and follows best practices.
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <div>
-                  <CardTitle className="text-xl text-white sm:text-2xl">Generated SQL</CardTitle>
-                  <CardDescription className="text-sm text-white/60 sm:text-base">
+                  <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Generated SQL</CardTitle>
+                  <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
                     Ready-to-use SQL query
                   </CardDescription>
                 </div>

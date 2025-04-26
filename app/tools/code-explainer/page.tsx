@@ -89,18 +89,18 @@ Format your response as markdown with proper headings, lists, and code blocks.
           icon="code-explainer"
         />
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Your Code</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
-                  Paste the code you want explained
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Your Code</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+                  Paste the code you want to explain
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -164,12 +164,12 @@ Format your response as markdown with proper headings, lists, and code blocks.
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <div>
-                  <CardTitle className="text-xl text-white sm:text-2xl">Explanation</CardTitle>
-                  <CardDescription className="text-sm text-white/60 sm:text-base">
-                    Simple explanation of what the code does
+                  <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Explanation</CardTitle>
+                  <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+                    AI-generated explanation
                   </CardDescription>
                 </div>
                 {explanation && (

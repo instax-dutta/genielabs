@@ -55,12 +55,12 @@ export default function Home() {
               {/* Removed: GenieLabs: AI Coder heading as per user request */}
               <AnimatedText
                 text="Transform Your Code Experience"
-                className="hero-text animate-gradient bg-gradient-to-r from-white via-white/90 to-white bg-clip-text text-balance text-5xl font-extrabold tracking-[-0.02em] text-transparent [text-shadow:_0_2px_20px_rgba(255,255,255,0.15)] sm:text-6xl md:text-7xl lg:text-8xl"
+                className="hero-text animate-gradient bg-gradient-to-r from-white via-white/90 to-white bg-clip-text text-balance text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.02em] text-transparent [text-shadow:_0_2px_20px_rgba(255,255,255,0.15)]"
                 delay={0.2}
               />
               <AnimatedText
                 text="Elevate your development workflow with AI-powered tools that help you write, analyze, and improve code faster than ever."
-                className="mx-auto max-w-[800px] text-lg font-medium text-white/80 transition-all duration-300 hover:text-white sm:text-xl md:text-2xl"
+                className="mx-auto max-w-[95vw] sm:max-w-[800px] text-base xs:text-lg sm:text-xl md:text-2xl font-medium text-white/80 transition-all duration-300 hover:text-white"
                 delay={0.4}
               />
             </div>
@@ -135,7 +135,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl mx-auto max-w-3xl"
+                className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-transparent mx-auto max-w-3xl"
               >
                 AI-Powered Development Tools
               </motion.h2>
@@ -144,12 +144,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-lg text-white/60 mx-auto max-w-2xl"
+                className="text-base xs:text-lg sm:text-xl text-white/60 mx-auto max-w-2xl"
               >
                 Streamline your workflow with our suite of intelligent coding tools
               </motion.p>
             </div>
-            <div className="col-span-full grid gap-6 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="col-span-full grid gap-6 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   href: "/tools/bug-fixer",
@@ -203,10 +203,10 @@ export default function Home() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-white transition-colors duration-300 group-hover:text-white/90">
+                          <h3 className="font-semibold text-base xs:text-lg sm:text-xl md:text-2xl text-white transition-colors duration-300 group-hover:text-white/90">
                             {tool.title}
                           </h3>
-                          <p className="mt-1 text-sm text-white/60 transition-colors duration-300 group-hover:text-white/70">
+                          <p className="mt-1 text-xs xs:text-sm sm:text-base text-white/60 transition-colors duration-300 group-hover:text-white/70">
                             {tool.description}
                           </p>
                         </div>

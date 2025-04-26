@@ -134,7 +134,7 @@ OPTIMIZATION:
           icon="complexity-analyzer"
         />
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -143,8 +143,8 @@ OPTIMIZATION:
           >
             <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Your Code</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white sm:text-2xl">Your Code</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60 sm:text-base">
                   Paste the code you want to analyze
                 </CardDescription>
               </CardHeader>
@@ -207,8 +207,8 @@ OPTIMIZATION:
           >
             <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Analysis Results</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white sm:text-2xl">Analysis Results</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60 sm:text-base">
                   Time complexity and optimization suggestions
                 </CardDescription>
               </CardHeader>

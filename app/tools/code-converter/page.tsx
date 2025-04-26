@@ -80,17 +80,17 @@ Make sure the converted code follows best practices and idioms of the target lan
           icon="code-converter"
         />
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Source Code</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Source Code</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
                   Paste the code you want to convert
                 </CardDescription>
               </CardHeader>
@@ -148,11 +148,11 @@ console.log(`The 10th Fibonacci number is: ${result}`);"
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[400px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
+            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
               <CardHeader className="space-y-1">
-                <CardTitle className="text-xl text-white sm:text-2xl">Converted Code</CardTitle>
-                <CardDescription className="text-sm text-white/60 sm:text-base">
-                  Your code translated to the target language
+                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Converted Code</CardTitle>
+                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+                  Converted code in target language
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
