@@ -62,7 +62,8 @@ OPTIMIZATION:
         }),
       })
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
+      // Mistral chat API returns response in data.choices[0].message.content
+      const responseContent = data.choices?.[0]?.message?.content || data.choices?.[0]?.text || data.completion || data.result || "";
 
       // Parse the response to extract complexity, explanation, and optimization
       const parts = parseResponse(responseContent)

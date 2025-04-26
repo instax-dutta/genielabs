@@ -50,7 +50,8 @@ Make sure the converted code follows best practices and idioms of the target lan
         }),
       })
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
+      // Mistral chat API returns response in data.choices[0].message.content
+      const responseContent = data.choices?.[0]?.message?.content || data.choices?.[0]?.text || data.completion || data.result || ""
 
       // Extract the code from the response
       const extractedCode = extractCodeFromResponse(responseContent, targetLanguage)

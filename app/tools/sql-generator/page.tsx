@@ -46,7 +46,8 @@ Make sure the SQL query is properly formatted and follows best practices.
         }),
       })
       const data = await response.json()
-      const responseContent = data.choices?.[0]?.text || data.completion || data.result || ""
+      // Mistral chat API returns response in data.choices[0].message.content
+      const responseContent = data.choices?.[0]?.message?.content || data.choices?.[0]?.text || data.completion || data.result || "";
 
       // Try to extract SQL from the response
       const extractedSql = extractSqlFromResponse(responseContent)
