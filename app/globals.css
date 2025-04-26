@@ -78,6 +78,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Mooxy', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  letter-spacing: 0.04em;
 }
 
 /* Enhanced Animation Keyframes */
