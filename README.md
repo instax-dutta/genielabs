@@ -1,8 +1,13 @@
+<!-- GenieLabs SVG Logo -->
+<p align="center">
+  <img src="public/favicon.svg" alt="GenieLabs Logo" width="80" height="80" />
+</p>
+
 # 🧞‍♂️ GenieLabs: AI-Powered Development Toolkit
 
 ## 🚀 Project Overview
 
-GenieLabs is a cutting-edge AI-powered development tool designed to revolutionize your coding experience. Leveraging advanced AI technologies like Hugging Face and DeepSeek R1 70B API, we've created a comprehensive toolkit to elevate your software development workflow.
+GenieLabs is a cutting-edge AI-powered development tool designed to revolutionize your coding experience. Leveraging advanced AI technologies like Mistral AI, we've created a comprehensive toolkit to elevate your software development workflow.
 
 ## 👥 Project Members
 - [Saidutta Abhishek Dash](https://github.com/instax-dutta)
@@ -41,35 +46,44 @@ GenieLabs is a cutting-edge AI-powered development tool designed to revolutioniz
 - Simplify database interaction and query creation
 
 ## 🛠️ Technologies Used
-- Hugging Face AI
-- DeepSeek R1 70B API
-- Advanced Machine Learning Technologies
+- Mistral AI (primary backend)
+- Next.js (frontend)
+- TypeScript, React
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.8+
-- pip
-- Virtual environment (recommended)
+- Node.js 18+
+- npm or yarn
 
 ### Installation
 ```bash
 git clone https://github.com/instax-dutta/genielabs.git
 cd genielabs
-pip install -r requirements.txt
+npm install
+# or
+yarn install
 ```
+
+### Environment Setup
+Create a `.env` file in the root directory with the following:
+```env
+MISTRAL_API_KEY=your-mistral-api-key-here
+```
+- **Do not share your API key publicly.**
+- The `.env` file is gitignored by default.
+
+### Running the App
+```bash
+npm run dev
+# or
+yarn dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser to use GenieLabs.
 
 ### Usage
-```python
-from genielabs import CodeAssistant
-
-# Initialize the AI assistant
-genie = CodeAssistant()
-
-# Example: Code explanation
-explanation = genie.explain_code(your_code_snippet)
-print(explanation)
-```
+- Access tools like Bug Fixer, Complexity Analyzer, Code Explainer, Code Converter, and SQL Generator from the navigation bar.
+- All tools use the Mistral API via a secure backend proxy.
 
 ## 🤝 Contributing
 Contributions are welcome! Please check out our [Contributing Guidelines](CONTRIBUTING.md).
