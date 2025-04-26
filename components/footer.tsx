@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Code } from "lucide-react"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:gap-4">
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#304FFE] to-[#00C853]">
-              <Code className="h-4 w-4 text-white" />
+              <Image src="/favicon.svg" alt="GenieLabs Logo" width={20} height={20} />
             </div>
             <span className="text-sm font-bold text-white">GenieLabs</span>
           </Link>
@@ -39,11 +39,10 @@ export default function Footer() {
             </Link>
           </nav>
           <div className="text-sm text-neutral-400 text-center sm:text-left">
-            © {new Date().getFullYear()} GenieLabs
+            {new Date().getFullYear()} GenieLabs
           </div>
         </div>
       </div>
     </footer>
   )
 }
-

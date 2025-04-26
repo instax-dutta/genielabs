@@ -6,6 +6,7 @@ import Link from "next/link"
 import { AnimatedText } from "@/components/animated-text"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
+import Image from "next/image"
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -147,35 +148,35 @@ export default function Home() {
                 Streamline your workflow with our suite of intelligent coding tools
               </motion.p>
             </div>
-            <div className="col-span-full grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="col-span-full grid gap-6 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   href: "/tools/bug-fixer",
-                  icon: <Bug className="h-7 w-7 text-white" />,
+                  icon: <Image src="/favicon.svg" alt="Bug Fixer" width={28} height={28} />,
                   title: "Bug Fixer",
                   description: "Detect and fix code issues automatically",
                 },
                 {
                   href: "/tools/complexity-analyzer",
-                  icon: <Code className="h-7 w-7 text-white" />,
+                  icon: <Image src="/favicon.svg" alt="Complexity Analyzer" width={28} height={28} />,
                   title: "Complexity Analyzer",
                   description: "Analyze code performance and complexity",
                 },
                 {
                   href: "/tools/code-explainer",
-                  icon: <FileCode className="h-7 w-7 text-white" />,
+                  icon: <Image src="/favicon.svg" alt="Code Explainer" width={28} height={28} />,
                   title: "Code Explainer",
                   description: "Get plain-English code explanations",
                 },
                 {
                   href: "/tools/code-converter",
-                  icon: <GitCompare className="h-7 w-7 text-white" />,
+                  icon: <Image src="/favicon.svg" alt="Code Converter" width={28} height={28} />,
                   title: "Code Converter",
                   description: "Convert between programming languages",
                 },
                 {
                   href: "/tools/sql-generator",
-                  icon: <Database className="h-7 w-7 text-white" />,
+                  icon: <Image src="/favicon.svg" alt="SQL Generator" width={28} height={28} />,
                   title: "SQL Generator",
                   description: "Generate SQL queries from text",
                 },
@@ -189,12 +190,12 @@ export default function Home() {
                 >
                   <Link
                     href={tool.href}
-                    className="group relative block overflow-hidden rounded-lg border border-white/20 bg-white/5 p-4 sm:p-6 backdrop-blur-xl transition-all duration-300 hover:border-[#304FFE]/30 hover:bg-white/10 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(48,79,254,0.2)]"
+                    className="group relative block overflow-hidden rounded-lg border border-white/20 bg-white/5 p-6 min-h-[140px] flex flex-col justify-center transition-all duration-300 hover:border-[#304FFE]/30 hover:bg-white/10 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(48,79,254,0.2)]"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#304FFE]/[0.05] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <div className="relative flex items-center gap-4">
                       <div className="rounded-full bg-gradient-to-br from-[#304FFE]/10 to-[#304FFE]/5 p-2.5 ring-1 ring-[#304FFE]/20 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-[#304FFE]/20 group-hover:ring-[#304FFE]/30">
-                        <div className="h-6 w-6 text-white/90 transition-colors duration-300 group-hover:text-white">
+                        <div className="h-7 w-7 text-white/90 transition-colors duration-300 group-hover:text-white">
                           {tool.icon}
                         </div>
                       </div>
@@ -217,4 +218,3 @@ export default function Home() {
     </div>
   )
 }
-

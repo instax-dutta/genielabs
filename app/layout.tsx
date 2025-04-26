@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </head>
       <body className={`${exo2.className} ${exo2.variable} no-horizontal-overflow`}>
         <div className="flex min-h-screen flex-col">
           <Header />
