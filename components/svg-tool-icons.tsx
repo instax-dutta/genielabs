@@ -65,12 +65,12 @@ export const SqlGeneratorIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export function RegexToolIcon(props: React.SVGProps<SVGSVGElement>) {
+  // New icon: regex brackets, asterisk, and dot-star
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" {...props}>
-      <rect x="2" y="8" width="28" height="16" rx="4" fill="#304FFE" fillOpacity="0.14" />
+      <rect x="2" y="8" width="28" height="16" rx="4" fill="#304FFE" fillOpacity="0.11" />
       <path d="M10 16c0-2 2-2 2 0s2 2 2 0 2-2 2 0 2 2 2 0 2-2 2 0" stroke="#304FFE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="8" cy="16" r="1.5" fill="#304FFE" />
-      <circle cx="24" cy="16" r="1.5" fill="#304FFE" />
+      <text x="16" y="22" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#304FFE">.*</text>
       <rect x="7" y="12" width="18" height="8" rx="2" stroke="#304FFE" strokeWidth="1.5" />
     </svg>
   );
