@@ -98,7 +98,8 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden md:ml-4 md:flex md:items-center">
+        {/* Removed Sign In button */}
+        {/* <div className="hidden md:ml-4 md:flex md:items-center">
           <Button
             variant="outline"
             size="sm"
@@ -106,9 +107,8 @@ export default function Header() {
           >
             Sign In
           </Button>
-        </div>
+        </div> */}
       </div>
     </header>
   )
 }
-
