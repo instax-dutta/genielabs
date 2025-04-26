@@ -126,8 +126,8 @@ EXPLANATION:
     <div className="min-h-screen bg-black">
       <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
         <ToolHeader
-          title="AI Bug Fixer"
-          description="Paste your buggy code and let our AI identify and fix issues with detailed explanations."
+          title="Bug Fixer"
+          description="Paste your code and let AI find and fix bugs for you."
           icon="bug"
         />
 

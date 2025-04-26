@@ -129,9 +129,9 @@ OPTIMIZATION:
     <div className="min-h-screen bg-black">
       <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
         <ToolHeader
-          title="Code Complexity Analyzer"
-          description="Analyze your code's time and space complexity with optimization suggestions."
-          icon="code"
+          title="Complexity Analyzer"
+          description="Analyze your code's time and space complexity with AI-powered insights."
+          icon="complexity-analyzer"
         />
 
         <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">

@@ -85,8 +85,8 @@ Format your response as markdown with proper headings, lists, and code blocks.
       <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
         <ToolHeader
           title="Code Explainer"
-          description="Get plain-English explanations of complex code snippets and algorithms."
-          icon="file-code"
+          description="Get clear, human-friendly explanations for any code snippet."
+          icon="code-explainer"
         />
 
         <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">

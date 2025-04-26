@@ -76,8 +76,8 @@ Make sure the converted code follows best practices and idioms of the target lan
       <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
         <ToolHeader
           title="Code Converter"
-          description="Translate your code between different programming languages seamlessly."
-          icon="git-compare"
+          description="Convert code between languages instantly and accurately."
+          icon="code-converter"
         />
 
         <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">

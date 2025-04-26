@@ -75,9 +75,9 @@ Make sure the SQL query is properly formatted and follows best practices.
     <div className="min-h-screen bg-black">
       <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
         <ToolHeader
-          title="SQL Query Generator"
-          description="Convert natural language to SQL queries with perfect syntax."
-          icon="database"
+          title="SQL Generator"
+          description="Turn natural language into optimized SQL queries in seconds."
+          icon="sql-generator"
         />
 
         <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">

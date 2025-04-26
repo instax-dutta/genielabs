@@ -6,7 +6,7 @@ import Link from "next/link"
 import { AnimatedText } from "@/components/animated-text"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
+import { homeToolIcons } from "@/components/home-tool-icons"
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -52,9 +52,10 @@ export default function Home() {
 
             {/* Enhanced Main Content */}
             <div className="space-y-8">
+              {/* Removed: GenieLabs: AI Coder heading as per user request */}
               <AnimatedText
                 text="Transform Your Code Experience"
-                className="animate-gradient bg-gradient-to-r from-white via-white/90 to-white bg-clip-text text-balance text-5xl font-extrabold tracking-[-0.02em] text-transparent [text-shadow:_0_2px_20px_rgba(255,255,255,0.15)] sm:text-6xl md:text-7xl lg:text-8xl"
+                className="hero-text animate-gradient bg-gradient-to-r from-white via-white/90 to-white bg-clip-text text-balance text-5xl font-extrabold tracking-[-0.02em] text-transparent [text-shadow:_0_2px_20px_rgba(255,255,255,0.15)] sm:text-6xl md:text-7xl lg:text-8xl"
                 delay={0.2}
               />
               <AnimatedText
@@ -152,65 +153,68 @@ export default function Home() {
               {[
                 {
                   href: "/tools/bug-fixer",
-                  icon: <Image src="/favicon.svg" alt="Bug Fixer" width={28} height={28} />,
+                  iconKey: "bug-fixer",
                   title: "Bug Fixer",
                   description: "Detect and fix code issues automatically",
                 },
                 {
                   href: "/tools/complexity-analyzer",
-                  icon: <Image src="/favicon.svg" alt="Complexity Analyzer" width={28} height={28} />,
+                  iconKey: "complexity-analyzer",
                   title: "Complexity Analyzer",
                   description: "Analyze code performance and complexity",
                 },
                 {
                   href: "/tools/code-explainer",
-                  icon: <Image src="/favicon.svg" alt="Code Explainer" width={28} height={28} />,
+                  iconKey: "code-explainer",
                   title: "Code Explainer",
                   description: "Get plain-English code explanations",
                 },
                 {
                   href: "/tools/code-converter",
-                  icon: <Image src="/favicon.svg" alt="Code Converter" width={28} height={28} />,
+                  iconKey: "code-converter",
                   title: "Code Converter",
                   description: "Convert between programming languages",
                 },
                 {
                   href: "/tools/sql-generator",
-                  icon: <Image src="/favicon.svg" alt="SQL Generator" width={28} height={28} />,
+                  iconKey: "sql-generator",
                   title: "SQL Generator",
                   description: "Generate SQL queries from text",
                 },
-              ].map((tool, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link
-                    href={tool.href}
-                    className="group relative block overflow-hidden rounded-lg border border-white/20 bg-white/5 p-6 min-h-[140px] flex flex-col justify-center transition-all duration-300 hover:border-[#304FFE]/30 hover:bg-white/10 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(48,79,254,0.2)]"
+              ].map((tool, i) => {
+                const Icon = homeToolIcons[tool.iconKey as keyof typeof homeToolIcons];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    viewport={{ once: true }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#304FFE]/[0.05] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    <div className="relative flex items-center gap-4">
-                      <div className="rounded-full bg-gradient-to-br from-[#304FFE]/10 to-[#304FFE]/5 p-2.5 ring-1 ring-[#304FFE]/20 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-[#304FFE]/20 group-hover:ring-[#304FFE]/30">
-                        <div className="h-7 w-7 text-white/90 transition-colors duration-300 group-hover:text-white">
-                          {tool.icon}
+                    <Link
+                      href={tool.href}
+                      className="group relative block overflow-hidden rounded-lg border border-white/20 bg-white/5 p-6 min-h-[140px] flex flex-col justify-center transition-all duration-300 hover:border-[#304FFE]/30 hover:bg-white/10 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(48,79,254,0.2)]"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#304FFE]/[0.05] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                      <div className="relative flex items-center gap-4">
+                        <div className="rounded-full bg-gradient-to-br from-[#304FFE]/10 to-[#304FFE]/5 p-2.5 ring-1 ring-[#304FFE]/20 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-[#304FFE]/20 group-hover:ring-[#304FFE]/30">
+                          <div className="h-7 w-7 text-[#304FFE] transition-colors duration-300 group-hover:text-white">
+                            <Icon className="h-7 w-7" />
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white transition-colors duration-300 group-hover:text-white/90">
+                            {tool.title}
+                          </h3>
+                          <p className="mt-1 text-sm text-white/60 transition-colors duration-300 group-hover:text-white/70">
+                            {tool.description}
+                          </p>
                         </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-white transition-colors duration-300 group-hover:text-white/90">
-                          {tool.title}
-                        </h3>
-                        <p className="mt-1 text-sm text-white/60 transition-colors duration-300 group-hover:text-white/70">
-                          {tool.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client"
 
-import { Bug, Code, FileCode, GitCompare, Database } from "lucide-react"
 import { motion } from "framer-motion"
+import { BugFixerIcon, ComplexityAnalyzerIcon, CodeExplainerIcon, CodeConverterIcon, SqlGeneratorIcon } from "./svg-tool-icons"
 
 interface ToolHeaderProps {
   title: string
@@ -13,17 +13,17 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
   const getIcon = () => {
     switch (icon) {
       case "bug":
-        return <Bug className="h-10 w-10 text-white" />
-      case "code":
-        return <Code className="h-10 w-10 text-white" />
-      case "file-code":
-        return <FileCode className="h-10 w-10 text-white" />
-      case "git-compare":
-        return <GitCompare className="h-10 w-10 text-white" />
-      case "database":
-        return <Database className="h-10 w-10 text-white" />
+        return <BugFixerIcon className="h-10 w-10 text-[#304FFE]" />
+      case "complexity-analyzer":
+        return <ComplexityAnalyzerIcon className="h-10 w-10 text-[#304FFE]" />
+      case "code-explainer":
+        return <CodeExplainerIcon className="h-10 w-10 text-[#304FFE]" />
+      case "code-converter":
+        return <CodeConverterIcon className="h-10 w-10 text-[#304FFE]" />
+      case "sql-generator":
+        return <SqlGeneratorIcon className="h-10 w-10 text-[#304FFE]" />
       default:
-        return <Code className="h-10 w-10 text-white" />
+        return <CodeExplainerIcon className="h-10 w-10 text-[#304FFE]" />
     }
   }
 
@@ -58,4 +58,3 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
     </div>
   )
 }
-

@@ -27,13 +27,11 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full ios-blur border-b border-white/10 bg-black/80">
       <div className="container flex h-16 items-center px-4 sm:px-6">
         <div className="flex w-full items-center justify-between md:w-auto">
-          <Link href="/" className="flex items-center gap-2 font-semibold">
+          <Link href="/" className="flex items-center gap-2">
             <div className="rounded-xl bg-gradient-to-br from-[#304FFE] to-[#00C853] p-1.5 transition-transform duration-300 hover:scale-105">
               <Image src="/favicon.svg" alt="GenieLabs Logo" width={32} height={32} />
             </div>
-            <span className="bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-lg font-bold text-transparent">
-              GenieLabs
-            </span>
+            <span className="brand-name bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-lg font-bold text-transparent">GenieLabs</span>
           </Link>
           <Sheet>
             <SheetTrigger asChild>
@@ -52,9 +50,7 @@ export default function Header() {
                   <div className="rounded-xl bg-gradient-to-br from-[#304FFE] to-[#00C853] p-1.5">
                     <Image src="/favicon.svg" alt="GenieLabs Logo" width={32} height={32} />
                   </div>
-                  <span className="bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-xl text-transparent">
-                    GenieLabs
-                  </span>
+                  <span className="brand-name bg-gradient-to-r from-[#304FFE] to-[#00C853] bg-clip-text text-xl text-transparent">GenieLabs</span>
                 </Link>
                 <div className="mt-8 flex flex-col gap-6">
                   {navItems.map((item) => (
