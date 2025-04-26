@@ -10,6 +10,7 @@ import { Download, Loader2 } from "lucide-react"
 import CodeDisplay from "@/components/code-display"
 import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
+import ReactMarkdown from 'react-markdown';
 
 export default function CodeExplainerPage() {
   const [code, setCode] = useState("")
@@ -207,22 +208,7 @@ Format your response as markdown with proper headings, lists, and code blocks.
                     </TabsList>
                     <TabsContent value="preview" className="mt-0">
                       <div className="prose prose-invert max-w-none rounded-lg border border-white/10 bg-white/5 p-4 text-sm sm:text-base">
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: explanation
-                              .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold text-white mb-4">$1</h1>')
-                              .replace(/^## (.*$)/gm, '<h2 class="text-xl font-semibold text-white mt-6 mb-3">$1</h2>')
-                              .replace(/^### (.*$)/gm, '<h3 class="text-lg font-medium text-white mt-4 mb-2">$1</h3>')
-                              .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')
-                              .replace(/\*(.*?)\*/g, '<em class="text-white/80">$1</em>')
-                              .replace(/\n/g, "<br />")
-                              .replace(/- (.*)/g, '<li class="text-white/70">$1</li>')
-                              .replace(
-                                /```(?:javascript|python|java|csharp|cpp|go|ruby|php)?\s*([\s\S]*?)```/g,
-                                '<pre class="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>$1</code></pre>',
-                              ),
-                          }}
-                        />
+                        <ReactMarkdown>{explanation}</ReactMarkdown>
                       </div>
                     </TabsContent>
                     <TabsContent value="markdown" className="mt-0">
