@@ -9,6 +9,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Accept prompt, max_tokens, temperature from client
     const { prompt, max_tokens, temperature } = req.body;
+    if (!process.env.MISTRAL_API_KEY) {
+      return res.status(500).json({ error: 'MISTRAL_API_KEY is not set in the environment.' });
+    }
+    if (!prompt) {
+      return res.status(400).json({ error: 'Prompt is required.' });
+    }
     const body = {
       model: 'codestral-latest',
       messages: [
@@ -18,7 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       temperature: temperature ?? 0.7,
     };
 
-    // Use MISTRAL_API_KEY for server-side security
     const mistralRes = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -29,9 +34,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       body: JSON.stringify(body),
     });
 
+    // Forward Mistral's status and error if any
+    if (!mistralRes.ok) {
+      const err = await mistralRes.text();
+      return res.status(mistralRes.status).json({ error: err });
+    }
+
     const data = await mistralRes.json();
-    res.status(mistralRes.status).json(data);
+    res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: 'Proxy failed', details: error });
+    res.status(500).json({ error: 'Proxy failed', details: error instanceof Error ? error.message : error });
   }
 }
