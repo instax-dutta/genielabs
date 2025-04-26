@@ -1,4 +1,4 @@
-import { BugFixerIcon, ComplexityAnalyzerIcon, CodeExplainerIcon, CodeConverterIcon, SqlGeneratorIcon } from "./svg-tool-icons";
+import { BugFixerIcon, ComplexityAnalyzerIcon, CodeExplainerIcon, CodeConverterIcon, SqlGeneratorIcon, RegexToolIcon } from "./svg-tool-icons";
 
 export const homeToolIcons = {
   "bug-fixer": BugFixerIcon,
@@ -6,4 +6,5 @@ export const homeToolIcons = {
   "code-explainer": CodeExplainerIcon,
   "code-converter": CodeConverterIcon,
   "sql-generator": SqlGeneratorIcon,
+  "regex-tool": RegexToolIcon,
 };

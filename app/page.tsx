@@ -181,6 +181,12 @@ export default function Home() {
                   title: "SQL Generator",
                   description: "Generate SQL queries from text",
                 },
+                {
+                  href: "/tools/regex-tool",
+                  iconKey: "regex-tool",
+                  title: "Regex Builder & Tester",
+                  description: "Build, test, and explain regex patterns with AI",
+                },
               ].map((tool, i) => {
                 const Icon = homeToolIcons[tool.iconKey as keyof typeof homeToolIcons];
                 return (
