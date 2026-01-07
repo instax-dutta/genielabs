@@ -73,24 +73,24 @@ Make sure the SQL query is properly formatted and follows best practices.
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="container max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
+      <div className="section-container py-8 sm:py-12">
         <ToolHeader
           title="SQL Generator"
           description="Turn natural language into optimized SQL queries in seconds."
           icon="sql-generator"
         />
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Natural Language Query</CardTitle>
-                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+            <Card className="h-full border-white/10 bg-black/60 backdrop-blur-md premium-shadow">
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-2xl sm:text-3xl font-bold text-white">Natural Language Query</CardTitle>
+                <CardDescription className="text-sm sm:text-base text-white/50">
                   Describe what data you want to retrieve
                 </CardDescription>
               </CardHeader>
@@ -125,11 +125,11 @@ Make sure the SQL query is properly formatted and follows best practices.
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
-              <CardHeader className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+            <Card className="h-full border-white/10 bg-black/60 backdrop-blur-md premium-shadow">
+              <CardHeader className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <div>
-                  <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Generated SQL</CardTitle>
-                  <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+                  <CardTitle className="text-2xl sm:text-3xl font-bold text-white">Generated SQL</CardTitle>
+                  <CardDescription className="text-sm sm:text-base text-white/50">
                     Ready-to-use SQL query
                   </CardDescription>
                 </div>

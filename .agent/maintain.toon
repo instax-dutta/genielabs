@@ -1,0 +1,17 @@
+[MAINTENANCE]
+API_MANAGEMENT: Multi-key rotation is implemented via the proxy layer (api/codestral-proxy.ts). Always maintain MISTRAL_API_KEY in .env. For production expansion, use multiple keys separated by commas.
+TOOL_EXTENSION: New tools should follow the structure of app/tools/bug-fixer/page.tsx. Update system prompt templates in the tool's handleSubmit.
+UI_SYNC: Ensure all new components use the 'section-container' and 'premium-shadow' classes from globals.css.
+ANIMATION: All text reveals must use the character-level AnimatedText component for consistency.
+
+[ARCHITECTURAL_NOTES]
+AI_READY: The codebase is model-agnostic. Prompts are isolated in page components to allow for easy fine-tuning without UI logic changes.
+RELIABILITY: amount: 0.2 in AnimatedText ensures high triggering reliability on scrolled content.
+VIEWPORT: Global pt-16 in ClientLayoutWrapper is tuned for the h-16 fixed header. Maintain standard padding in child sections.
+
+[DEVELOPER_RULES]
+UI: Premium Dark/Glow/Glass aesthetics only. No generic white backgrounds.
+TYPOGRAPHY: Headers=Mooxy, Hero/Brand=Achiko. Regular=Next/Font/Exo_2.
+INTERACTION: Hover scaling (1.02x) and subtle glow transition (300ms) required.
+AI: No client-side API fetches. All requests must go through /api/codestral-proxy.
+DOCS: Keep public README free of sensitive infra details; keep internal .agent/ docs verbose.

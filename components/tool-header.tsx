@@ -28,7 +28,7 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
   }
 
   return (
-    <div className="mb-8 sm:mb-10 md:mb-12 flex flex-col items-center space-y-4 text-center px-4 sm:px-0">
+    <div className="mt-8 sm:mt-12 mb-8 sm:mb-10 md:mb-12 flex flex-col items-center space-y-4 text-center px-4 sm:px-0">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -37,12 +37,12 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
       >
         {getIcon()}
       </motion.div>
-      <div className="space-y-2 sm:space-y-3">
+      <div className="space-y-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gradient-to-b from-white to-[#304FFE]/90 bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-transparent"
+          className="hero-text bg-gradient-to-b from-white via-white/90 to-[#304FFE]/70 bg-clip-text text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-transparent leading-[1.1] py-2"
         >
           {title}
         </motion.h1>
@@ -50,7 +50,7 @@ export default function ToolHeader({ title, description, icon }: ToolHeaderProps
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto max-w-[700px] text-base sm:text-lg text-white/60 md:text-xl/relaxed"
+          className="mx-auto max-w-[700px] text-base sm:text-lg text-white/40 md:text-xl font-medium leading-relaxed"
         >
           {description}
         </motion.p>

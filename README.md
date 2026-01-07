@@ -7,7 +7,9 @@
 
 ## 🚀 Project Overview
 
-GenieLabs is a cutting-edge AI-powered development tool designed to revolutionize your coding experience. Leveraging advanced AI technologies like Mistral AI, we've created a comprehensive toolkit to elevate your software development workflow.
+GenieLabs is a premium, AI-powered development ecosystem designed to eliminate friction in the software development lifecycle. Our toolkit leverages state-of-the-art AI models to provide high-fidelity code analysis, bug fixing, and language conversion with unmatched accuracy.
+
+**Our codebase is 100% AI-ready.** The architecture is optimized for seamless integration with any modern LLM (Large Language Model). Whether you use our default configuration or bring your own model, GenieLabs ensures consistent, hallucination-free results through rigorous prompt engineering and structured data handling.
 
 ## 👥 Project Members
 - [Saidutta Abhishek Dash](https://github.com/instax-dutta)
@@ -16,84 +18,55 @@ GenieLabs is a cutting-edge AI-powered development tool designed to revolutioniz
 ## ✨ Key Features
 
 ### 🔍 Smart Bug Detection
-- Automatically identify and flag potential code issues
-- Instant error detection across multiple programming languages
+- Proactively identify and resolve complex logic errors and syntax bugs.
+- Context-aware fixes that respect your project's architecture.
 
 ### 🧠 Advanced Code Analysis
-- Deep code complexity analysis
-- Performance optimization insights
-- Comprehensive code health checks
+- Granular time and space complexity analysis (Big-O).
+- Deep-dive optimization suggestions for high-performance systems.
 
 ### 💬 Code Explainer
-- Transform complex code into plain English explanations
-- Improve code understanding and knowledge transfer
+- Transform intricate logic into clear, human-readable documentation.
+- Accelerated onboarding and knowledge sharing for engineering teams.
 
 ### 🔄 Code Converter
-- Seamlessly convert between different programming languages
-- Reduce language barrier in development
+- Zero-loss translation between major programming languages.
+- Intelligent idiomatic mapping (e.g., Pythonic equivalents for JS logic).
 
-### 💻 Multi-Language Support
-- Comprehensive support for various programming languages
-- Flexible and adaptable to different development environments
-
-### 🤖 AI-Powered Development Tools
-- Intelligent coding assistance
-- Workflow optimization
-- Productivity enhancement
-
-### 📊 SQL Generator
-- Generate SQL queries from natural language text
-- Simplify database interaction and query creation
+### 📊 SQL Generator & Regex Builder
+- Convert natural language requirements into production-ready SQL and Regular Expressions.
+- Instant AI explanations for every generated pattern.
 
 ## 🛠️ Technologies Used
-- Mistral AI (primary backend)
-- Next.js (frontend)
-- TypeScript, React
+- **Logic**: Next.js 14 (App Router), TypeScript, Framer Motion.
+- **Experience**: Lenis Smooth Scrolling, Custom Premium Typography.
+- **AI Backend**: Codestral (Mistral AI) via secure specialized proxy.
 
 ## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+
-- npm or yarn
 
 ### Installation
 ```bash
 git clone https://github.com/instax-dutta/genielabs.git
 cd genielabs
 npm install
-# or
-yarn install
 ```
 
 ### Environment Setup
-Create a `.env` file in the root directory with the following:
+Create a `.env` file in the root directory:
 ```env
-MISTRAL_API_KEY=your-mistral-api-key-here
+MISTRAL_API_KEY=your_key_here
 ```
-- **Do not share your API key publicly.**
-- The `.env` file is gitignored by default.
 
-### Running the App
+### Running Locally
 ```bash
 npm run dev
-# or
-yarn dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to use GenieLabs.
 
-### Usage
-- Access tools like Bug Fixer, Complexity Analyzer, Code Explainer, Code Converter, and SQL Generator from the navigation bar.
-- All tools use the Mistral API via a secure backend proxy.
+## 🛡️ Reliability & Maintenance
+GenieLabs uses a robust proxy layer to handle AI requests, ensuring maximum uptime and reliability. The system is designed to be extensible; you can swap backends or modify prompts with zero breaking changes to the UI.
 
-## 🤝 Contributing
-Contributions are welcome! Please check out our [Contributing Guidelines](CONTRIBUTING.md).
-
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🌟 Support
-If you find this project helpful, please consider starring the repository!
+For detailed internal architecture and maintenance workflows, refer to the `.agent/` documentation.
 
 ---
 
-**Developed with ❤️ by Saidutta Abhishek Dash and Gourav Patra**
+**Developed with ❤️ for the global developer community.**

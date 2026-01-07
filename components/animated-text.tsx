@@ -10,36 +10,56 @@ interface AnimatedTextProps {
 }
 
 export function AnimatedText({ text, className = "", delay = 0 }: AnimatedTextProps) {
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const words = text.split(" ")
 
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible")
-    }
-  }, [controls, isInView])
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.02,
+        delayChildren: delay
+      },
+    },
+  }
+
+  const childVariants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 15,
+        stiffness: 200,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 15,
+    },
+  }
 
   return (
     <motion.div
-      ref={ref}
+      variants={containerVariants}
       initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.5,
-            delay: delay,
-            ease: [0.4, 0, 0.2, 1],
-          },
-        },
-      }}
-      className={className}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className={`flex flex-wrap justify-center items-center ${className}`}
     >
-      {text}
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} className="inline-flex whitespace-nowrap mr-[0.2em]">
+          {Array.from(word).map((char, charIndex) => (
+            <motion.span
+              key={charIndex}
+              variants={childVariants}
+              style={{ display: "inline-block" }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+      ))}
     </motion.div>
   )
 }

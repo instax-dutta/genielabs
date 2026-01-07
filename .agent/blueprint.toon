@@ -1,0 +1,16 @@
+[ARCHITECTURE]
+ROOT:Next.js_14_AppRouter
+API:PagesRouter_API(Proxy_Pattern)
+STYLE:Vanilla_Tailwind+RadixUI
+ANIM:FramerMotion_Variants
+
+[DATA_FLOW]
+CLIENT:ToolPage->API_Proxy
+PROXY:Auth_Header_Rotate->Provider_Fetch
+RECOVERY:Ollama_Fail->Mistral_Retry
+
+[DEPENDENCIES]
+CORE:[react,next,typescript]
+UI:[lenis,framer-motion,lucide-react,clsx,tailwind-merge]
+PARSER:[react-markdown,zod]
+SHADCN:[accordion,dialog,tabs,select,textarea,button]

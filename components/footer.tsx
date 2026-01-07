@@ -38,8 +38,9 @@ export default function Footer() {
               Cookies
             </Link>
           </nav>
-          <div className="text-sm text-neutral-400 text-center sm:text-left">
-            {new Date().getFullYear()} GenieLabs
+          <div className="text-sm text-neutral-400 text-center sm:text-left flex flex-col gap-1">
+            <span>© {new Date().getFullYear()} GenieLabs</span>
+            <span className="text-xs text-neutral-500">Powered by <a href="https://sdad.pro" className="hover:text-white transition-colors">sdad.pro</a></span>
           </div>
         </div>
       </div>

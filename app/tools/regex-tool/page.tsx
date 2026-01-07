@@ -80,23 +80,23 @@ export default function RegexToolPage() {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="container max-w-3xl px-4 py-6 sm:px-6 sm:py-8 lg:py-12">
+      <div className="section-container py-8 sm:py-12">
         <ToolHeader
           title="Regex Builder & Tester"
           description="Build, test, and understand regular expressions with AI explanations."
           icon="regex-tool"
         />
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Regex Pattern</CardTitle>
-                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+            <Card className="h-full border-white/10 bg-black/60 backdrop-blur-md premium-shadow">
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-2xl sm:text-3xl font-bold text-white">Regex Pattern</CardTitle>
+                <CardDescription className="text-sm sm:text-base text-white/50">
                   Enter your regex and flags (e.g. <code>gim</code> for global, ignore case, multiline)
                 </CardDescription>
               </CardHeader>
@@ -132,10 +132,10 @@ export default function RegexToolPage() {
             transition={{ duration: 0.5 }}
             className="min-w-0"
           >
-            <Card className="h-full min-h-[300px] sm:min-h-0 border-white/10 bg-black/60 backdrop-blur-sm">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-xl xs:text-2xl sm:text-3xl text-white">Test Text</CardTitle>
-                <CardDescription className="text-sm xs:text-base sm:text-lg text-white/60">
+            <Card className="h-full border-white/10 bg-black/60 backdrop-blur-md premium-shadow">
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-2xl sm:text-3xl font-bold text-white">Test Text</CardTitle>
+                <CardDescription className="text-sm sm:text-base text-white/50">
                   Paste sample text to test your regex
                 </CardDescription>
               </CardHeader>
@@ -186,7 +186,7 @@ export default function RegexToolPage() {
                   <div className="whitespace-pre-wrap">
                     <ReactMarkdown
                       components={{
-                        code({node, className, children, ...props}) {
+                        code({ node, className, children, ...props }) {
                           // @ts-expect-error: react-markdown passes inline
                           const inline = props.inline;
                           return !inline ? (
