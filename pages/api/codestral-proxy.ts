@@ -1,4 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { LRUCache } from 'lru-cache';
+
+// Initialize cache: max 100 items, TTL 1 hour
+const cache = new LRUCache<string, any>({
+  max: 100,
+  ttl: 1000 * 60 * 60,
+});
 
 // Helper to get keys from environment variable
 const getKeys = (envVar: string | undefined): string[] => {
@@ -23,6 +30,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required.' });
+    }
+
+    // Performance: Check cache first
+    const cacheKey = JSON.stringify({ prompt, max_tokens, temperature });
+    const cachedResponse = cache.get(cacheKey);
+    if (cachedResponse) {
+      return res.status(200).json(cachedResponse);
     }
 
     const ollamaKeys = getKeys(process.env.OLLAMA_API_KEYS);
@@ -56,13 +70,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         if (ollamaRes.ok) {
           const data = await ollamaRes.json();
-          return res.status(200).json({
+          const finalResponse = {
             choices: [{
               message: {
                 content: data.message?.content || data.response || ""
               }
             }]
-          });
+          };
+          // Store in cache
+          cache.set(cacheKey, finalResponse);
+          return res.status(200).json(finalResponse);
         }
 
         const errorText = await ollamaRes.text();
@@ -95,6 +112,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         if (mistralRes.ok) {
           const data = await mistralRes.json();
+          // Store in cache
+          cache.set(cacheKey, data);
           return res.status(200).json(data);
         } else {
           const err = await mistralRes.text();
