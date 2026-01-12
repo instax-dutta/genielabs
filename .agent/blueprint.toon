@@ -6,7 +6,7 @@ ANIM:FramerMotion_Variants
 
 [DATA_FLOW]
 CLIENT:ToolPage->API_Proxy
-PROXY:Auth_Header_Rotate->Provider_Fetch
+PROXY:Provider_LoadBalancing->Provider_Fetch
 RECOVERY:Ollama_Fail->Mistral_Retry
 
 [DEPENDENCIES]

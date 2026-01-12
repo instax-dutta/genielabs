@@ -1,5 +1,5 @@
 [MAINTENANCE]
-API_MANAGEMENT: Multi-key rotation is implemented via the proxy layer (api/codestral-proxy.ts). Always maintain MISTRAL_API_KEY in .env. For production expansion, use multiple keys separated by commas.
+API_MANAGEMENT: Provider-agnostic requests via the proxy layer (api/codestral-proxy.ts). Supports both Ollama Cloud and Mistral AI fallbacks. For production, ensure both OLLAMA_API_KEYS and MISTRAL_API_KEYS are correctly configured.
 TOOL_EXTENSION: New tools should follow the structure of app/tools/bug-fixer/page.tsx. Update system prompt templates in the tool's handleSubmit.
 UI_SYNC: Ensure all new components use the 'section-container' and 'premium-shadow' classes from globals.css.
 ANIMATION: All text reveals must use the character-level AnimatedText component for consistency.

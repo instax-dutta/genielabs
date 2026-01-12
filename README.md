@@ -40,7 +40,7 @@ GenieLabs is a premium, AI-powered development ecosystem designed to eliminate f
 ## 🛠️ Technologies Used
 - **Logic**: Next.js 14 (App Router), TypeScript, Framer Motion.
 - **Experience**: Lenis Smooth Scrolling, Custom Premium Typography.
-- **AI Backend**: Codestral (Mistral AI) via secure specialized proxy.
+- **AI Backend**: Hybrid intelligence powered by Ollama Cloud (GLM-4) and Mistral AI (Codestral).
 
 ## 🚀 Getting Started
 
@@ -54,7 +54,12 @@ npm install
 ### Environment Setup
 Create a `.env` file in the root directory:
 ```env
-MISTRAL_API_KEY=your_key_here
+# AI Provider Configuration
+OLLAMA_API_KEYS=your_key_here  # Primary provider (GLM-4)
+MISTRAL_API_KEY=your_key_here  # Fallback provider (Codestral)
+
+# Optional: Custom API Host
+OLLAMA_HOST=https://ollama.com
 ```
 
 ### Running Locally
@@ -63,7 +68,7 @@ npm run dev
 ```
 
 ## 🛡️ Reliability & Maintenance
-GenieLabs uses a robust proxy layer to handle AI requests, ensuring maximum uptime and reliability. The system is designed to be extensible; you can swap backends or modify prompts with zero breaking changes to the UI.
+GenieLabs uses a multi-provider proxy layer that intelligently manages requests between Ollama Cloud and Mistral AI, ensuring maximum uptime and high-fidelity responses. The system is designed to be model-agnostic; you can easily swap between providers or integrate new LLMs with zero breaking changes to the UI.
 
 For detailed internal architecture and maintenance workflows, refer to the `.agent/` documentation.
 
