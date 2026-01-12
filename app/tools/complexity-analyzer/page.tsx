@@ -10,6 +10,7 @@ import ToolHeader from "@/components/tool-header"
 import { motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
 
+import DOMPurify from 'dompurify';
 export default function ComplexityAnalyzerPage() {
   const [code, setCode] = useState("")
   const [language, setLanguage] = useState("javascript")
@@ -268,11 +269,9 @@ OPTIMIZATION:
                       <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-white/80 sm:text-base">
                         <div
                           className="whitespace-pre-wrap"
-                          dangerouslySetInnerHTML={{
-                            __html: result.optimization
+                          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(result.optimization
                               .replace(/^\/\/.*optimization.*\n?/i, '')
-                              .replace(/```(?:javascript|python|java|csharp|cpp|go|ruby|php)?\s*([\s\S]*?)```/g, '<pre class="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>$1</code></pre>'),
-                          }}
+                              .replace(/```(?:javascript|python|java|csharp|cpp|go|ruby|php)?\s*([\s\S]*?)```/g, '<pre class="my-4 overflow-x-auto rounded-md bg-black/40 p-4 font-mono"><code>$1</code></pre>'),) }}
                         />
                       </div>
                     </TabsContent>
